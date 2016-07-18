@@ -73,7 +73,7 @@ var wit = require('./src/botkit-middleware-witai')({
 
 
 var controller = Botkit.slackbot({
-    debug: true,
+    //debug: true,
 });
 
 var bot = controller.spawn({
@@ -84,6 +84,6 @@ controller.middleware.receive.use(wit.receive);
 
 
 /* note this uses example middlewares defined above */
-controller.hears(['hello'], 'direct_message,direct_mention,mention', wit.hears, function(bot, message) {
+controller.hears(['greetings'], 'direct_message,direct_mention,mention', wit.hears, function(bot, message) {
     bot.reply(message, 'Hello!');
 });

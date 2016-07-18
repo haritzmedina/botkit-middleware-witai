@@ -11,20 +11,19 @@ module.exports = function(config) {
     }
 
     var middleware = {};
-    const client = new Wit({accessToken: config.token});
 
     middleware.receive = function(bot, message, next) {
         if (message.text) {
-            client.message(message.text, function(error, data) {
-                if (error) {
-                    next(error);
+            wit.captureTextIntent(config.token, message.text, function(err, res) {
+                if (err) {
+                    next(err);
                 } else {
-                    message.entities = data.entities;
+                    console.log(JSON.stringify(res));
+                    message.entities = res.outcomes[0].entities;
                     next();
                 }
             });
         }
-
     };
 
     middleware.hears = function(tests, message) {
