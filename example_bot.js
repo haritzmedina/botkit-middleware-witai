@@ -87,3 +87,7 @@ controller.middleware.receive.use(wit.receive);
 controller.hears(['greetings'], 'direct_message,direct_mention,mention', wit.hears, function(bot, message) {
     bot.reply(message, 'Hello!');
 });
+
+controller.hears(['conferenceSessions'], 'direct_message,direct_mention,mention', wit.hears, function(bot, message){
+   bot.reply(message, 'Next sessions are...');
+});
